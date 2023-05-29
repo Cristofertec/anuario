@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/styles.css">
+    <title>Anuario</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="/welcomeEstudiante" id="perfilnav">
+                <h1>Inicio</h1>
+            </a>
+
+        </div>
+        <div class="navigation">
+
+            <input type="checkbox"class="toggle-menu">
+            <div class="hamburger"></div>
+
+            <ul class="menu">
+                <div class="mar">
+                <button class="inbutton">
+                    
+                        <li><a href="/modificarEstudiante">Modificar</a></li>
+                </button>
+                <button class="upbutton">
+                    
+                    <li><a href="/logout">Cerrar Sesion</a></li>
+                </button>
+                </div>
+            </ul>
+
+        </div>
+    </header>
+
+    
+    <section>
+
+        <h1>Modificar Estudiante</h1>
+
+	    <form action="/modificarEst" method="post" enctype="multipart/form-data">
+
+        <input id="actualizarInput" name="id" type="hidden" class="id" value="<%=user.no_control%>">
+
+		<label for="nombre">Nombre completo:</label>
+		<input type="text" id="nombre" name="nombre" value="<%=user.nombre%>" required>
+
+        <label for="carrera">Carrera:</label>
+		<input type="text" id="carrera" name="carrera" value="<%=user.carrera%>" required>
+
+        <label for="imagen_principal">Foto:</label>
+        <label for="file" class="custom-file-upload"><i class="fas fa-cloud-upload-alt"></i> Subir imagen</label>
+        <input type="file" name="file" id="file">
+        <input type="hidden" name="current_image" value="<%=user.imagen%>">
+
+        <div id="imagen-principal-preview"><img src="<%=user.imagen%>" alt=""></div>
+
+		<label for="email">Correo electrónico:</label>
+		<input type="email" id="email" name="email" value="<%=user.email%>" required>
+
+		<label for="password">Contraseña:</label>
+		<input type="password" id="password" name="password" value="<%=user.password%>" required>
+
+		<label for="intereses">Intereses Academicos:</label>
+		<input type="text" id="nombre" name="intereses" value="<%=user.intereses%>" required>
+        
+        <label for="habilidades">Habilidades y fortalezas:</label>
+		<input type="text" id="nombre" name="habilidades" value="<%=user.habilidades%>" required>
+
+        <label for="objetivos">Objetivos a corto y largo plazo:</label>
+		<input type="text" id="nombre" name="objetivos" value="<%=user.objetivos%>" required>
+        
+        <input type="submit" value="Modificar" onclick="alert('Cambios aplicados, necesita reiniciar su sesion para ver los cambios')">
+
+	</form>
+
+    </section>
+
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+  // Manejar cambios en el campo de imagen principal
+  $('#file').change(function(e) {
+    var file = e.target.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#imagen-principal-preview').html('<img src="' + e.target.result + '" alt="Imagen Principal">');
+    }
+
+    reader.readAsDataURL(file);
+  });
+
+});
+    </script>
+
+</body>
+</html>

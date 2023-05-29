@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/styles.css">
+    <title>Anuario</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="/index.html">
+                <h1>Anuario Estudiantil</h1>
+            </a>
+        </div>
+        <div class="navigation">
+
+            <input type="checkbox"class="toggle-menu">
+            <div class="hamburger"></div>
+
+            <ul class="menu">
+                
+                <li><a href="/alumnosInicio">Alumnos</a></li>
+                <li><a href="/proyectos">Proyectos</a></li>
+
+                <div class="mar">
+                <button class="inbutton">
+                    <li><a href="/views/inicioSesion.html">Iniciar Sesion</a></li>
+                </button>
+                <button class="upbutton">
+                    <li><a href="/views/registro.html">Registrarse</a></li>
+                </button>
+                </div>
+            </ul>
+        </div>
+    </header>
+
+    <div class="search-container">
+        <form action="/buscar" method="post">
+            <input type="number" name="searchInput" placeholder="Buscar alumno..." required>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <section> 
+
+        <div class="contenedor">
+
+        <%rows.forEach(estudiantes => {%>
+
+            <div class="card">
+    
+                <figure>
+                    <img src="<%=estudiantes.imagen %>" alt="">
+                </figure>
+    
+                <div class="contenido">
+                    <p><strong>No.Control: </strong><%=estudiantes.no_control%></p>
+                    <p><strong>Nombre:</strong><%=estudiantes.nombre %></p>
+                    <p><strong>Carrera:</strong> <%=estudiantes.carrera %></p>
+                    <p><strong>Email:</strong> <%=estudiantes.email %></p>
+                    <a href="/detalle-alumno-nosesion?id=<%= estudiantes.no_control %>">Leer mas...</a>
+    
+                </div>
+    
+            </div>
+    
+        <%})%>
+
+        </div>
+
+    </section>
+
+    
+    
+
+    <script>
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const searchTerm = searchInput.value.trim();
+            searchAlumnos(searchTerm);
+        });
+
+        function searchAlumnos(searchTerm) {
+            // Aquí puedes implementar la lógica de búsqueda de alumnos
+            // Puedes hacer una solicitud al servidor para obtener los resultados
+            // y luego mostrarlos en la sección "search-results"
+        }
+    </script>
+</body>
+</html>
+        

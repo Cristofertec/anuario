@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/styles.css">
+    <title>Anuario</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="/welcome" id="perfilnav">
+                <h1>Administracion</h1>
+            </a>
+
+        </div>
+        <div class="navigation">
+
+            <input type="checkbox"class="toggle-menu">
+            <div class="hamburger"></div>
+
+            <ul class="menu">
+                <li><a href="/welcome">Inicio</a></li>
+                <li><a href="/alumnosSesion">Alumnos</a></li>
+                <li><a href="/proyectosSesion">Proyectos</a></li>
+                
+                <div class="mar">
+                <button class="upbutton">
+                    <li><a href="/logout">Cerrar Sesion</a></li>
+                </button>
+                </div>
+            </ul>
+
+        </div>
+    </header>
+
+    <section>
+
+        <h1>Registrar nuevo alumno</h1>
+
+	    <form action="/register2" method="post" enctype="multipart/form-data">
+
+        <label for="numero">Número de control:</label>
+        <input type="number" id="numero" name="numero" placeholder="Ingresa un número de control" required>       
+
+		<label for="nombre">Nombre completo:</label>
+		<input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre completo" required>
+
+        <label for="carrera">Carrera:</label>
+		<input type="text" id="carrera" name="carrera" placeholder="Escribe tu carrera" required>
+
+        <label for="imagen_principal">Foto:</label>
+        <label for="file" class="custom-file-upload"><i class="fas fa-cloud-upload-alt"></i> Subir imagen</label>
+        <input type="file" name="file" id="file">
+
+        <div id="imagen-principal-preview"></div>
+
+		<label for="email">Correo electrónico:</label>
+		<input type="email" id="email" name="email" placeholder="Escribe tu correo electrónico" required>
+
+		<label for="password">Contraseña:</label>
+		<input type="password" id="password" name="password" placeholder="Escribe tu contraseña" required>
+
+		<label for="intereses">Intereses Academicos:</label>
+		<input type="text" id="nombre" name="intereses" placeholder="Escribe aqui" required>
+        
+        <label for="habilidades">Habilidades y fortalezas:</label>
+		<input type="text" id="nombre" name="habilidades" placeholder="Escribe aqui" required>
+
+        <label for="objetivos">Objetivos a corto y largo plazo:</label>
+		<input type="text" id="nombre" name="objetivos" placeholder="Escribe aqui" required>
+        
+        <input type="submit" value="Registrar">
+
+	</form>
+
+    </section>
+
+        
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+  // Manejar cambios en el campo de imagen principal
+  $('#file').change(function(e) {
+    var file = e.target.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#imagen-principal-preview').html('<img src="' + e.target.result + '" alt="Imagen Principal">');
+    }
+
+    reader.readAsDataURL(file);
+  });
+
+});
+    </script>
+
+</body>
+</html>

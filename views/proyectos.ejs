@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/styles.css">
+    <title>Anuario</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="/index.html">
+                <h1>Anuario Estudiantil</h1>
+            </a>
+        </div>
+        <div class="navigation">
+
+            <input type="checkbox"class="toggle-menu">
+            <div class="hamburger"></div>
+
+            <ul class="menu">
+                
+                <li><a href="/alumnosInicio">Alumnos</a></li>
+                <li><a href="/proyectos">Proyectos</a></li>
+
+                <div class="mar">
+                <button class="inbutton">
+                    <li><a href="/views/inicioSesion.html">Iniciar Sesion</a></li>
+                </button>
+                <button class="upbutton">
+                    <li><a href="/views/registro.html">Registrarse</a></li>
+                </button>
+                </div>
+            </ul>
+        </div>
+    </header>
+
+    
+
+    <div class="slider">
+        <div class="slides">
+            <%rows.forEach(proyectos => {%>
+            <div class="slide">
+                <img src="<%= proyectos.imagenPrincipal %>" alt="Imagen 1">
+                <div class="slide-text">
+                    <h2><%= proyectos.titulo %></h2>
+                    <p><%= proyectos.descripcionCorta %></p>
+                </div>
+            </div>
+            <%  }) %>
+        </div>
+        <div class="controls">
+            <button class="prev-btn">&lt;</button>
+            <button class="next-btn">&gt;</button>
+        </div>
+    </div>
+
+    <div id="arrow-space">
+        <a href="#destino" class="flecha" onclick="smoothScroll(event)">
+            <span class="flecha-icono">&#8595;</span>
+        </a>
+    </div>
+
+      
+    <%rows.forEach(proyectos => {%>
+        <div id="destino">
+            <div><img src="<%= proyectos.imagenPrincipal %>" alt="" srcset=""></div>
+            <div id="descripcion-proyecto">
+                <h1><%= proyectos.titulo %></h1>
+                <h2>Autores: <%= proyectos.autores %></h2>
+                <p><%= proyectos.descripcionLarga %></p>
+                <a href="/detalle-proyecto-nosesion?id=<%= proyectos.id %>" id="button-proyecto">Ver más...</a>
+            </div>
+        </div>
+        <%  }) %>
+      
+
+      
+
+<script>
+
+
+let slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+
+function showSlide(n) {
+  // Oculta todos los slides
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = 'none';
+  }
+
+  // Muestra el slide actual
+  slides[n].style.display = 'block';
+}
+
+function nextSlide() {
+  currentSlide++;
+  if (currentSlide >= slides.length) {
+    currentSlide = 0;
+  }
+  showSlide(currentSlide);
+}
+
+function previousSlide() {
+  currentSlide--;
+  if (currentSlide < 0) {
+    currentSlide = slides.length - 1;
+  }
+  showSlide(currentSlide);
+}
+
+let prevButton = document.querySelector('.prev-btn');
+let nextButton = document.querySelector('.next-btn');
+
+prevButton.addEventListener('click', previousSlide);
+nextButton.addEventListener('click', nextSlide);
+
+// Mostrar el primer slide al cargar la página
+showSlide(currentSlide);
+
+setInterval(nextSlide, 3000);
+
+
+function smoothScroll(event) {
+  event.preventDefault();
+  
+  const targetId = event.currentTarget.getAttribute("href");
+  const targetElement = document.querySelector(targetId);
+  
+  if (targetElement) {
+    window.scrollTo({
+      top: targetElement.offsetTop,
+      behavior: "smooth"
+    });
+  }
+}
+
+
+  </script>
+
+
+</body>
+</html>

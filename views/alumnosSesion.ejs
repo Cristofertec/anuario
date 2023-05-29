@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/styles.css">
+    <title>Anuario</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="/welcome" id="perfilnav">
+                <h1>Alumnos</h1>
+            </a>
+
+        </div>
+        <div class="navigation">
+
+            <input type="checkbox"class="toggle-menu">
+            <div class="hamburger"></div>
+
+            <ul class="menu">
+                <li><a href="/welcome">Inicio</a></li>
+                <li><a href="/alumnosSesion">Alumnos</a></li>
+                <li><a href="/proyectosSesion">Proyectos</a></li>
+                
+                <div class="mar">
+                <button class="upbutton">
+                    <li><a href="/logout">Cerrar Sesion</a></li>
+                </button>
+                </div>
+            </ul>
+
+        </div>
+    </header>
+
+    <div class="search-container">
+        <form action="/buscar2" method="post">
+            <input type="number" name="searchInput" placeholder="Buscar alumno..." required>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <section>
+        <div class="contenedor">
+
+            <%rows.forEach(estudiantes => {%>
+    
+                <div class="card">
+        
+                    <figure>
+                        <img src="<%=estudiantes.imagen %>" alt="">
+                    </figure>
+        
+                    <div class="contenido">
+                        <p><strong>Nombre:</strong><%=estudiantes.nombre %></p>
+                        <p>Carrera: <%=estudiantes.carrera %></p>
+                        <p>Intereses: <%=estudiantes.intereses %></p>
+                        <a href="/detalle-alumno?id=<%= estudiantes.no_control %>">Leer mas...</a>
+        
+                    </div>
+        
+                </div>
+        
+            <%})%>
+    
+            </div>
+
+    </section>
+
+        
+
+
+</body>
+</html>

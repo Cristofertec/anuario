@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/styles.css">
+    <title>Anuario</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="#" id="perfilnav">
+                <h1>Bienvenido <%= user.nombre %></h1>
+            </a>
+
+        </div>
+        <div class="navigation">
+
+            <input type="checkbox"class="toggle-menu">
+            <div class="hamburger"></div>
+
+            <ul class="menu">
+                <div class="mar">
+                <button class="inbutton">
+                    
+                        <li><a href="/modificarEstudiante">Modificar</a></li>
+                </button>
+                <button class="upbutton">
+                    
+                    <li><a href="/logout">Cerrar Sesion</a></li>
+                </button>
+                </div>
+            </ul>
+
+        </div>
+    </header>
+    
+    <section>
+        
+        <div class="content">
+            <h2>Estudiante</h2>
+            <div id="user-info">
+
+                <img src="<%=user.imagen%>" alt="" srcset="">
+                <div id="info-user">
+                    <h1>Nombre</h1>
+                    <p><%=user.nombre%></p>
+                    <h1>Carrera</h1>
+                    <p><%=user.carrera%></p>
+                    <h1>Email</h1>
+                    <p><%=user.email%></p>
+                    <h1>Intereses</h1>
+                    <p><%=user.intereses%></p>
+                    <h1>Habilidades</h1>
+                    <p><%=user.habilidades%></p>
+                    <h1>Objetivos</h1>
+                    <p><%=user.objetivos%></p>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+</html>
